@@ -1,9 +1,9 @@
+require('dotenv').config()
 //! Cargamos express y traemos express()
 const express = require("express");
 const app = express();
 //! Recogemos la conexión mongo
 const db = require("./database/mongo.js");
-
 
 //! Enlazamos con routes
 const router = require("./routes/routes");
@@ -14,4 +14,5 @@ app.use(express.json());
 
 //! Localhost:5500
 app.use("/", router);
-app.listen(port, console.log("Servidor ON: " + port));
+
+app.listen(process.env.PORT, () => console.log("Server on port:" + process.env.PORT));
