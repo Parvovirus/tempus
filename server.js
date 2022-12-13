@@ -1,4 +1,5 @@
 require('dotenv').config()
+const serversless = require("serverless-http")
 //! Cargamos express y traemos express()
 const express = require("express");
 const app = express();
@@ -15,4 +16,7 @@ app.use(express.json());
 
 //! Localhost:5500
 app.use("/", router);
+app.use("./netlify/functions/api",router)
 app.listen(process.env.PORT, console.log("Servidor ON: " + process.env.PORT));
+
+module.exports.handler = serversless(app)
